@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.id">
+        <tr v-for="item in filteredItems" :key="item.id">
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ formatCurrency(item.sale_price) }}</td>
@@ -24,10 +24,22 @@ import apiService from '../services/apiService';
 
 export default {
   name: 'TabelaComponent',
+  props: {
+    searchQuery: String
+  },
   data() {
     return {
       items: [],
     };
+  },
+  computed: {
+    filteredItems() {
+      if (!this.searchQuery) {
+        return this.items;
+      }
+      const query = this.searchQuery.toLowerCase();
+      return this.items.filter(item => item.name.toLowerCase().includes(query));
+    }
   },
   methods: {
     fetchProducts() {

@@ -2,7 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <div class="container">
-      <TabelaComponent />
+      <SearchComponent v-model:searchQuery="searchQuery" />
+      <TabelaComponent  :searchQuery="searchQuery" />
     </div>
    
   </div>
@@ -10,13 +11,20 @@
 
 <script>
 import TabelaComponent from './TabelaComponent.vue';
+import SearchComponent from './SearchComponent.vue';
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
   components: {
-    TabelaComponent
+    TabelaComponent,
+    SearchComponent
+  },
+  data() {
+    return {
+      searchQuery: ''
+    };
   }
 }
 </script>
