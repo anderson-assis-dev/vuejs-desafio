@@ -2,8 +2,7 @@
 
 ## Rodando o Projeto
 
-Certifique-se de ter [Node.js](https://nodejs.org/) instalado em sua máquina.
-
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 ## Project setup
 1. Clone este repositório:
 
