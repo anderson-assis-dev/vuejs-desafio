@@ -1,6 +1,8 @@
 <template>
   <div>
     <div class="table-responsive">
+      <p>Total de registros encontrados: {{ filteredItems.length }}</p>
+
       <table class="table table-striped table-bordered table-hover">
         <thead>
           <tr>
@@ -19,12 +21,13 @@
       </table>
     </div>
     <div class="pagination">
-      <button @click="prevPage" :disabled="currentPage === 1">Anterior</button>
+      <button @click="prevPage" :disabled="currentPage === 1" class="btn btn-primary">Anterior</button>
       <span>Página {{ currentPage }} de {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="currentPage === totalPages">Próxima</button>
+      <button @click="nextPage" :disabled="currentPage === totalPages" class="btn btn-primary">Próxima</button>
     </div>
   </div>
 </template>
+
 
 <script>
 import apiService from '../services/apiService';
@@ -96,18 +99,26 @@ export default {
 };
 </script>
 
+
 <style scoped>
+.table-responsive {
+  margin-top: 20px;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
+
 .pagination button {
   margin: 0 10px;
   padding: 5px 10px;
 }
+
 .pagination span {
   margin: 0 10px;
 }
 </style>
+
