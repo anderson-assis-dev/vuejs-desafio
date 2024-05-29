@@ -1,15 +1,26 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <Main msg="Desafio Em Vue JS"/>
+ 
+  <div class="container">
+      <SearchComponent v-model:searchQuery="searchQuery" />
+      <ProductListComponent  :searchQuery="searchQuery" />
+  </div>
 </template>
 
 <script>
-import Main from './components/Main.vue'
 
+import ProductListComponent from './components/ProductListComponent.vue';
+import SearchComponent from './components/SearchComponent.vue';
 export default {
   name: 'App',
   components: {
-    Main
+    ProductListComponent,
+    SearchComponent
+  },
+  data() {
+    return {
+      searchQuery: ''
+    };
   }
 }
 </script>
