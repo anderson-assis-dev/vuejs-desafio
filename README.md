@@ -11,7 +11,7 @@ Certifique-se de ter [Node.js](https://nodejs.org/) instalado em sua máquina.
    git clone https://github.com/anderson-assis-dev/vuejs-desafio.git
 ```
 
-``
+```
 cd seu-projeto
 ```
 
