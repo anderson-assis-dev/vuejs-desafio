@@ -1,6 +1,4 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
- 
   <div class="container">
       <SearchComponent v-model:searchQuery="searchQuery" />
       <ProductListComponent  :searchQuery="searchQuery" />
