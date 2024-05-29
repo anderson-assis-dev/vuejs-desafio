@@ -9,6 +9,8 @@
             <th>ID</th>
             <th>Nome</th>
             <th>Preço</th>
+            <th>Ações</th>
+
           </tr>
         </thead>
         <tbody>
@@ -16,6 +18,8 @@
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
             <td>{{ formatCurrency(item.sale_price) }}</td>
+            <td><button @click="viewDetails(item)" class="btn btn-info">Visualizar</button></td>
+
           </tr>
         </tbody>
       </table>
@@ -25,23 +29,30 @@
       <span>Página {{ currentPage }} de {{ totalPages }}</span>
       <button @click="nextPage" :disabled="currentPage === totalPages" class="btn btn-primary">Próxima</button>
     </div>
+    <ProductDetails v-if="selectedProduct" :product="selectedProduct" @close="selectedProduct = null" />
+
   </div>
 </template>
 
 
 <script>
 import apiService from '../services/apiService';
+import ProductDetails from './ProductDetailsComponent.vue';
 
 export default {
   name: 'ProductListComponent',
   props: {
     searchQuery: String
   },
+  components: {
+    ProductDetails
+  },
   data() {
     return {
       items: [],
       currentPage: 1,
-      itemsPerPage: 10
+      itemsPerPage: 10,
+      selectedProduct: null
     };
   },
   computed: {
@@ -70,6 +81,9 @@ export default {
         .catch(error => {
           console.error('Erro ao buscar produtos:', error);
         });
+    },
+    viewDetails(item) {
+      this.selectedProduct = item;
     },
     formatCurrency(value) {
       return value.toLocaleString('pt-BR', {
@@ -120,5 +134,27 @@ export default {
 .pagination span {
   margin: 0 10px;
 }
+
+.total-records {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dialog {
+  max-width: 500px;
+}
 </style>
+
 
