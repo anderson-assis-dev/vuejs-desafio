@@ -23,7 +23,6 @@ npm install
 ```
 npm run serve
 ```
-The project will be running at http://localhost:8081/.
 
 ### Compiles and minifies for production
 ```
@@ -34,3 +33,4 @@ npm run build
 ```
 npm run lint
 ```
+The project will be running at http://localhost:8081/.
